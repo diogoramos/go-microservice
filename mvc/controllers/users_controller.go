@@ -25,7 +25,7 @@ func GetUser(resp http.ResponseWriter, req *http.Request){
 		return
 	}
 
-	user, apiErr := services.GetUser(uint64(userId));
+	user, apiErr := services.UserService.GetUser(uint64(userId));
 
 	if apiErr != nil {
 		jsonValue, _ := json.Marshal(apiErr)

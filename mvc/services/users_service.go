@@ -5,6 +5,10 @@ import (
 	"github.com/diogoramos/go-microservice/mvc/utils"
 )
 
-func GetUser(userId uint64) (*domain.User, *utils.ApplicationError){
-	return domain.GetUser(userId)
+type userService struct{}
+
+var (UserService userService)
+
+func (u *userService) GetUser(userId uint64) (*domain.User, *utils.ApplicationError){
+	return domain.UserDao.GetUser(userId)
 }

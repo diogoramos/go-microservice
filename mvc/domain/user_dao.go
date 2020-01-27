@@ -15,9 +15,21 @@ var (
 			Email:     "diogo.ramos@live.com",
 		},
 	}
+	UserDao userDaoInterface
 )
 
-func GetUser(userId uint64) (*User, *utils.ApplicationError){
+func init(){
+	UserDao = &userDao{}
+}
+
+type userDaoInterface interface {
+	GetUser(uint64)(*User, *utils.ApplicationError)
+}
+
+type userDao struct {}
+
+
+func (u *userDao) GetUser(userId uint64) (*User, *utils.ApplicationError){
 	if user := users[userId]; user != nil{
 		return user, nil
 	}
