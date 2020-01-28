@@ -19,6 +19,7 @@ func GetUser(c *gin.Context){
 			Code:    "bad_request",
 		}
 		c.JSON(apiErr.Status, apiErr)
+		//utils.Respond(c, apiErr.Status, apiErr)
 		return
 	}
 
