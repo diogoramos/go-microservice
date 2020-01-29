@@ -30,4 +30,5 @@ func GetUser(c *gin.Context){
 		return
 	}
 	c.JSON(http.StatusOK, user)
+	return
 }
