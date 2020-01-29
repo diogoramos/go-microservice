@@ -22,7 +22,28 @@ type CreateRepoRequest struct {
 	HasWiki     bool	`json:"has_wiki"`
 }
 
+type CreateRepoResponse struct {
+	Id        	int64		`json:"id"`
+	NodeId      string		`json:"node_id"`
+	Name        string		`json:"name"`
+	FullName    string		`json:"full_name"`
+	Private     bool		`json:"private"`
+	Owner		RepoOwner 	`json:"owner"`
+	Permissions	RepoPermissions `json:"permissions"`
+}
 
+type RepoPermissions struct {
+	IsAdmin	bool	`json:"admin"`
+	HasPush	bool	`json:"push"`
+	HasPull	bool	`json:"pull"`
+}
+
+type RepoOwner struct {
+	Id 			int64 	`json:"id"`
+	Login       string	`json:"login"`
+	Url        	string	`json:"url"`
+	HtmlUrl     string	`json:"html_url"`
+}
 
 
 /*
