@@ -3,10 +3,9 @@ package github_provider
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/diogoramos/go-microservice/src/api/domain/github"
 	"github.com/diogoramos/go-microservice/src/api/clients/restclient"
+	"github.com/diogoramos/go-microservice/src/api/domain/github"
 	"io/ioutil"
-
 	"net/http"
 )
 
@@ -14,11 +13,11 @@ var (
 	headerAuthorization = "abc"
 	headerAuthorizationFormat = "token %s"
 
-	urlCreateRepo = ""
+	urlCreateRepo = "https://api.github.com/user/repos"
 )
 
 func getAuthorizationHeader(accessToken string) string {
-	return fmt.Sprint(headerAuthorizationFormat, accessToken)
+	return fmt.Sprintf(headerAuthorizationFormat, accessToken)
 }
 
 func CreateRepo(accessToken string, r github.CreateRepoRequest )(*github.CreateRepoResponse, *github.GitHubErrorResponse){
@@ -65,7 +64,7 @@ func CreateRepo(accessToken string, r github.CreateRepoRequest )(*github.CreateR
 	if err:= json.Unmarshal(bytes, &result); err != nil{
 		return nil, &github.GitHubErrorResponse{
 			StatusCode: http.StatusInternalServerError,
-			Message:    "Invalid json response body",
+			Message:    "Error when trying to unmarshal github create repo response",
 		}
 	}
 
